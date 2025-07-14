@@ -7,6 +7,7 @@ public class AICharacterController : MonoBehaviour
 
     private FollowLineManager followLineManager;
     private Vector3 lastDirection;
+    bool isMoving;
 
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer spriteRenderer;
@@ -32,11 +33,17 @@ public class AICharacterController : MonoBehaviour
         Vector3 direction = (targetToFollow.position - transform.position);
         direction.y = 0f;
 
-        if (direction.magnitude > 0.2f)
+        if (direction.magnitude > 0.3f)
         {
             Vector3 move = direction.normalized * moveSpeed * Time.deltaTime;
             transform.Translate(move, Space.World);
             lastDirection = direction.normalized;
+            isMoving = true;
+            UpdateAnimation(lastDirection);
+        }
+        else
+        {
+            isMoving = false;
             UpdateAnimation(lastDirection);
         }
 
@@ -45,7 +52,6 @@ public class AICharacterController : MonoBehaviour
 
     private void UpdateAnimation(Vector3 input)
     {
-        bool isMoving = input.sqrMagnitude > 0.01f;
         animator.SetBool("isMoving", isMoving);
 
         if (!isMoving)
