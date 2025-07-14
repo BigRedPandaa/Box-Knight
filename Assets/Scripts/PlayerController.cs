@@ -6,11 +6,14 @@ public class PlayerController : MonoBehaviour
     private Vector2 movementInput;
     public float moveSpeed = 1f;
 
+    public FollowLineManager followLineManager;
+
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
     private void Awake()
     {
+        followLineManager.SetNewLeader(this.gameObject.transform);
         inputActions = new InputSystem_Actions();
 
         // Bind movement input
