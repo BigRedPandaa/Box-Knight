@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Windows;
 
 public class PlayerController : MonoBehaviour
@@ -23,6 +24,8 @@ public class PlayerController : MonoBehaviour
         // Bind movement input
         inputActions.Player.Move.performed += ctx => movementInput = ctx.ReadValue<Vector2>();
         inputActions.Player.Move.canceled += _ => movementInput = Vector2.zero;
+        inputActions.Player.Action_1.performed += OnAction1;
+        inputActions.Player.Action_2.performed += OnAction2;
     }
 
     private void OnEnable()
@@ -37,10 +40,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (UnityEngine.Input.GetKeyDown(KeyCode.Space))
-        {
-            lineupManager.addFollower(testFollower);
-        }
+        
 
         Vector3 move = new Vector3(movementInput.x, 0f, movementInput.y);
         transform.Translate(move * moveSpeed * Time.deltaTime, Space.World);
@@ -105,6 +105,16 @@ public class PlayerController : MonoBehaviour
 
         animator.SetFloat("MoveX", direction.x);
         animator.SetFloat("MoveY", direction.z); // 🔁 FIXED
+    }
+
+    private void OnAction1(InputAction.CallbackContext context)
+    {
+
+    }
+
+    private void OnAction2(InputAction.CallbackContext context)
+    {
+
     }
 
 }

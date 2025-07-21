@@ -41,4 +41,15 @@ public class CameraController : MonoBehaviour
         // Look at the lagged player position for a more natural feel
         transform.LookAt(laggedPlayerPosition);
     }
+
+    public void SetTarget(Transform newTarget)
+    {
+        player = newTarget;
+
+        if (player != null)
+        {
+            laggedPlayerPosition = player.position;
+        }
+    }
+
 }
