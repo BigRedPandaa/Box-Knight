@@ -41,9 +41,6 @@ public class LineupManager : MonoBehaviour
         Vector3 dropPostion = leaderObject.transform.position;
 
         leaderPosition.transform.position = dropPostion;
-
-        Debug.Log("dropped leader Position");
-
         leaderPositions.Add(leaderPosition);
     }
 
