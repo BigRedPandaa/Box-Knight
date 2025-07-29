@@ -1,13 +1,21 @@
-﻿using UnityEngine;
-
+﻿using UnityEditor;
+using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 public class FollowerController : MonoBehaviour
 {
+    public bool showDebugLine = true;
+    public Color debugLineColor = Color.green;
+
     public LineupManager lineupManager;
     public GameObject followerLead;
 
     private Animator animator;
-    public float moveSpeed = 1f;
-    public float stopDistanceFromLead = 1.2f;
+    public float baseSpeed = 1f;
+    public float stopDistanceFromLead = 0.3f;
+    public float maxSpeedMultiplier = 2f;
+    public float speedRampDistance = 5f; // How far to reach max speed
 
     private int currentTargetIndex = 0;
 
@@ -20,41 +28,61 @@ public class FollowerController : MonoBehaviour
     {
         if (lineupManager.leaderPositions.Count == 0) return;
 
-        // ✅ Stop if close to lead
+        currentTargetIndex = Mathf.Clamp(currentTargetIndex, 0, lineupManager.leaderPositions.Count - 1);
+        GameObject targetObj = lineupManager.leaderPositions[currentTargetIndex];
+        if (targetObj == null) return;
+
+        Vector3 targetPos = targetObj.transform.position;
+        float distanceToTarget = Vector3.Distance(transform.position, targetPos);
+
+        // ✅ Dynamic speed based on distance
+        float speedMultiplier = Mathf.Clamp01(distanceToTarget / speedRampDistance);
+        float moveSpeed = Mathf.Lerp(baseSpeed, baseSpeed * maxSpeedMultiplier, speedMultiplier);
+
+        // ✅ Never fully stop unless too close to leader directly
         if (followerLead != null)
         {
             float distanceToLead = Vector3.Distance(transform.position, followerLead.transform.position);
-            if (distanceToLead < stopDistanceFromLead)
+            if (distanceToLead < stopDistanceFromLead && distanceToTarget < stopDistanceFromLead)
             {
                 UpdateAnimation(Vector3.zero);
                 return;
             }
         }
 
-        // Clamp index
-        currentTargetIndex = Mathf.Clamp(currentTargetIndex, 0, lineupManager.leaderPositions.Count - 1);
-        GameObject targetObj = lineupManager.leaderPositions[currentTargetIndex];
-        if (targetObj == null) return;
-
-        Vector3 targetPos = targetObj.transform.position;
         Vector3 moveDir = (targetPos - transform.position).normalized;
-
         UpdateAnimation(moveDir);
         transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
+        float threshold = 0.1f;
 
-        if (Vector3.Distance(transform.position, targetPos) < 0.1f)
+        if (distanceToTarget < threshold)
         {
-            // ✅ Last follower deletes the position
             if (IsLastFollower())
             {
                 lineupManager.DeleteLeaderPositionAt(currentTargetIndex);
-                // Don't increment index — it now points to the next one
             }
             else
             {
                 currentTargetIndex++;
             }
         }
+        else if (IsLastFollower() && currentTargetIndex < lineupManager.leaderPositions.Count - 1)
+        {
+            // If you're getting farther from the target, skip it
+            Vector3 nextTargetPos = lineupManager.leaderPositions[currentTargetIndex].transform.position;
+            Vector3 directionToTarget = (nextTargetPos - transform.position).normalized;
+            Vector3 velocity = (transform.position - transform.position) / Time.deltaTime; // This is always 0, so instead...
+
+            Vector3 futurePos = transform.position + directionToTarget * baseSpeed * Time.deltaTime;
+            float futureDist = Vector3.Distance(futurePos, nextTargetPos);
+
+            if (futureDist > distanceToTarget + 0.1f)
+            {
+                // Getting further → skip this point
+                lineupManager.DeleteLeaderPositionAt(currentTargetIndex);
+            }
+        }
+
     }
 
     private bool IsLastFollower()
@@ -77,13 +105,28 @@ public class FollowerController : MonoBehaviour
             return;
         }
 
-        Vector3 direction;
-        if (Mathf.Abs(input.x) > Mathf.Abs(input.z))
-            direction = new Vector3(Mathf.Sign(input.x), 0, 0);
-        else
-            direction = new Vector3(0, 0, Mathf.Sign(input.z));
+        Vector3 direction = Mathf.Abs(input.x) > Mathf.Abs(input.z)
+            ? new Vector3(Mathf.Sign(input.x), 0, 0)
+            : new Vector3(0, 0, Mathf.Sign(input.z));
 
         animator.SetFloat("MoveX", direction.x);
         animator.SetFloat("MoveY", direction.z);
     }
+
+    private void OnDrawGizmos()
+    {
+#if UNITY_EDITOR
+        if (!Application.isPlaying || !showDebugLine) return;
+        if (lineupManager == null || lineupManager.leaderPositions.Count == 0) return;
+
+        int targetIndex = Mathf.Clamp(currentTargetIndex, 0, lineupManager.leaderPositions.Count - 1);
+        GameObject target = lineupManager.leaderPositions[targetIndex];
+        if (target == null) return;
+
+        Handles.color = debugLineColor;
+        Handles.DrawLine(transform.position + Vector3.up * 0.2f, target.transform.position + Vector3.up * 0.2f);
+#endif
+    }
+
 }
+

@@ -8,7 +8,6 @@ public class PlayerController : MonoBehaviour
     private Vector2 movementInput;
     public float moveSpeed = 1f;
 
-    public LineupManager lineupManager;
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
@@ -46,38 +45,6 @@ public class PlayerController : MonoBehaviour
         transform.Translate(move * moveSpeed * Time.deltaTime, Space.World);
 
         UpdateAnimation(move);
-
-        if (lineupManager.followers.Count > 0)
-        {
-            if (movementInput.x != 0 || movementInput.y != 0)
-            {
-                dropTimer += Time.deltaTime;
-
-                if (dropTimer >= dropCooldown)
-                {
-                    Vector3 lastDropPos = Vector3.positiveInfinity;
-
-                    // Check if there are any leader positions dropped
-                    if (lineupManager.leaderPositions.Count > 0)
-                    {
-                        // Get the position of the last dropped leader position
-                        lastDropPos = lineupManager.leaderPositions[lineupManager.leaderPositions.Count - 1].transform.position;
-                    }
-
-                    // Only drop if player is 0.2f or more away from last drop
-                    if (Vector3.Distance(transform.position, lastDropPos) >= 0.2f)
-                    {
-                        lineupManager.dropLeaderPosition();
-                        dropTimer = 0f;
-                    }
-                }
-            }
-            else
-            {
-                // Reset drop timer if not moving
-                dropTimer = dropCooldown;
-            }
-        }
     }
 
     public void UpdateAnimation(Vector3 input)

@@ -175,6 +175,7 @@ public class LineupManager : MonoBehaviour
             oldLeaderFollower.followerLead = followers[charIndex - 2];
         }
 
+
         leaderController.enabled = false;
         leaderInputs.enabled = false;
         leaderFollowerBrain.enabled = true;
@@ -191,5 +192,12 @@ public class LineupManager : MonoBehaviour
 
         leaderControls = FollowerObject.GetComponent<PlayerController>();
         leaderObject = FollowerObject;
+    }
+
+    public void SpawnFollowerPositionAt(Vector3 position)
+    {
+        GameObject followerPosition = new GameObject("followerPosition");
+        GameObject newPos = Instantiate(followerPosition, position, Quaternion.identity);
+        leaderPositions.Add(newPos);
     }
 }
