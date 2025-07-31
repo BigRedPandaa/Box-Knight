@@ -4,9 +4,12 @@ public class TriggerDelete : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("Player"))
+        Debug.Log("Hit: " + other.name);
+
+        // Example: check if it's an enemy
+        if (other.CompareTag("Enemy"))
         {
-            Destroy(other.gameObject);
+            Debug.Log("Enemy Hit");
         }
     }
 }
