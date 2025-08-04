@@ -6,36 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="8b9d74e0-ab0e-494d-95e2-4b04eee2d162" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Box-Knight/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Box-Knight/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Billy_Bot.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Billy_Bot/BillyTheBot.controller" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Billy_Bot/BillyTheBot.controller.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Billy_Bot/BillyTheRobotAttempt_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Billy_Bot/BillyTheRobotAttempt_1.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Billy_Bot/East_Idle_BB.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Billy_Bot/East_Idle_BB.anim.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Billy_Bot/East_Run_BB.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Billy_Bot/East_Run_BB.anim.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Billy_Bot/North_Idle_BB.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Billy_Bot/North_Idle_BB.anim.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Billy_Bot/North_Run_BB.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Billy_Bot/North_Run_BB.anim.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Billy_Bot/South_Idle_BB.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Billy_Bot/South_Idle_BB.anim.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Billy_Bot/South_Run_BB.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Billy_Bot/South_Run_BB.anim.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Billy_Bot/West_Idle_BB.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Billy_Bot/West_Idle_BB.anim.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Billy_Bot/West_Run_BB.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Billy_Bot/West_Run_BB.anim.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Assets/3D/House_1.fbx" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/3D/House_1.fbx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Assets/3D/House_1.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/3D/House_1.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Assets/Cube.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Assets/Cube.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Assets/New Material.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Assets/New Material.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/2D/Materials/LL_Sidewalk Variant.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/2D/Materials/LL_Sidewalk Variant.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Assets/2D/Materials/Roof_1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets/2D/Materials/Roof_1.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/InputSystem_Actions.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/InputSystem_Actions.inputactions" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TriggerDelete11.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TriggerDelete11.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/InputSystem_Actions.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/InputSystem_Actions.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -48,6 +24,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/CharacterActions/BoxKnight.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Diaolgue/DialogueInteractable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ICharacterActions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem/InputSystem/Utilities/DelegateHelpers.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal/Shaders/Lit.shader" root0="SKIP_HIGHLIGHTING" />
@@ -137,6 +114,11 @@
       <workItem from="1753920710479" duration="6225000" />
       <workItem from="1754190541338" duration="2857000" />
       <workItem from="1754195217995" duration="2000" />
+      <workItem from="1754267251792" duration="717000" />
+      <workItem from="1754268384323" duration="863000" />
+      <workItem from="1754269307099" duration="7000" />
+      <workItem from="1754269328181" duration="112000" />
+      <workItem from="1754269518312" duration="1989000" />
     </task>
     <servers />
   </component>
