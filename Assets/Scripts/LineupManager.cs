@@ -144,11 +144,17 @@ public class LineupManager : MonoBehaviour
         FollowerController leaderFollowerBrain = leaderObject.GetComponent<FollowerController>();
         Vector3 leaderPos = leaderObject.transform.position;
 
+        var leadActions = leaderObject.GetComponent<ICharacterActions>();
+        Debug.Log(leadActions);
+
         GameObject FollowerObject = followers[charIndex - 1].gameObject;
         PlayerController FollowerController = followers[charIndex - 1].GetComponent<PlayerController>();
         PlayerInput FollowerInputs = followers[charIndex - 1].GetComponent<PlayerInput>();
         FollowerController thisFollowerBrain = followers[charIndex - 1].GetComponent<FollowerController>();
         Vector3 followerPos = followers[charIndex - 1].transform.position;
+
+        var followActions = FollowerObject.GetComponent<ICharacterActions>();
+        Debug.Log(followActions);
 
         Camera mainCamera;
         mainCamera = Camera.main;

@@ -5,6 +5,7 @@ public class BoxKnight : MonoBehaviour, ICharacterActions
 {
     public PlayerController player;
 
+    [SerializeField] private bool ListenToActions = true;
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
@@ -22,6 +23,9 @@ public class BoxKnight : MonoBehaviour, ICharacterActions
 
     public void PerformActionOne()
     {
+        if (ListenToActions == false)
+            return;
+
         StartCoroutine(DoSwordSwing());
     }
 
@@ -67,5 +71,14 @@ public class BoxKnight : MonoBehaviour, ICharacterActions
     public void PerformActionTwo()
     {
         // Another action
+    }
+
+    public void DisableActions()
+    {
+        ListenToActions = false;
+    }
+    public void EnableActions()
+    {
+        ListenToActions = true;
     }
 }

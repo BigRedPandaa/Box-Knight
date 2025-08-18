@@ -6,6 +6,8 @@ public class BillyBot : MonoBehaviour, ICharacterActions
    
     public PlayerController player;
 
+    [SerializeField] private bool ListenToActions = true;
+
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
@@ -27,9 +29,13 @@ public class BillyBot : MonoBehaviour, ICharacterActions
 
     public void PerformActionOne()
     {
+
         isActive = !isActive; // Toggle state
 
-        if (objectToActivate != null)
+        if (ListenToActions == false)
+            return;
+
+        else if (objectToActivate != null)
         {
             if (isActive)
                 UpdateObjectPositionAndRotation(); // Ensure it spawns correctly
@@ -88,4 +94,15 @@ public class BillyBot : MonoBehaviour, ICharacterActions
     {
         // Another action if needed
     }
+
+    public void DisableActions()
+    {
+     objectToActivate.SetActive(false);
+        ListenToActions = false;
+    }
+    public void EnableActions()
+    {
+        ListenToActions = true;
+    }
+
 }
